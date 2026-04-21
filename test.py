@@ -3,6 +3,7 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 import pathlib
+import pandas as pd
 
 
 def find_leftmost_subarray(arr, threshold):
@@ -182,7 +183,14 @@ def process_image(image_path, gray_threshold=(70,255), y_axis_range=(22,108), x1
     plt.tight_layout()
     plt.savefig(f"{image_name}_output.png", dpi=500)
 
-    return f"{image_name}_output.png"
+
+    df = pd.DataFrame({
+    'X 坐标': x2 + x,
+    'Y 坐标': y2+y
+    })
+
+
+    return f"{image_name}_output.png", df
 
 def main(image_path, gray_threshold=(70,255), y_axis_range=(22,108), x1_axis_range=(7900,2000), x2_axis_range=(2000,350)):
     img_path = pathlib.Path(image_path)
