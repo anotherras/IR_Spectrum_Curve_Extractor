@@ -184,9 +184,12 @@ def process_image(image_path, gray_threshold=(70,255), y_axis_range=(22,108), x1
     plt.savefig(f"{image_name}_output.png", dpi=500)
 
 
+    df_x = [round(i,2) for i in x2 + x]
+    df_y = [round(i,2) for i in y2 + y]
+
     df = pd.DataFrame({
-    'X 坐标': x2 + x,
-    'Y 坐标': y2+y
+    'X 坐标': df_x,
+    'Y 坐标': df_y
     })
 
 
