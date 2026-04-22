@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 import tempfile
-import pandas as pd  # 确保导入了 pandas
+import pandas as pd  
 from PIL import Image
 from test import main as main_process
 
@@ -38,19 +38,16 @@ if uploaded_file is not None:
                 temp_file_path = temp_file.name 
             
             try:
-                # 假设 main_process 返回图片路径和 DataFrame
                 processed_path, df = main_process(temp_file_path, y_axis_range=(y_min, y_max))
                 
                 st.markdown("---") 
                 
-                # 1. 显示原始图片
                 st.subheader("🔍 1. Raw Image")
                 original_image = Image.open(uploaded_file)
                 st.image(original_image, use_container_width=True)
                 
                 st.markdown("<br>", unsafe_allow_html=True) 
                 
-                # 2. 显示处理后的图片
                 st.subheader("✨ 2. Processed Image")
                 if os.path.exists(processed_path):
                     processed_image = Image.open(processed_path)
@@ -64,13 +61,10 @@ if uploaded_file is not None:
 
                 st.markdown("<br>", unsafe_allow_html=True) 
 
-                # --- 3. 在最下方显示数据表格 ---
                 st.subheader("📊 3. Extracted Data Points")
                 if df is not None and not df.empty:
-                    # 显示交互式表格
                     st.dataframe(df, use_container_width=True)
                     
-                    # 导出 CSV 的功能
                     csv = df.to_csv(index=False).encode('utf-8')
                     st.download_button(
                         label="📥 Download Data as CSV",
@@ -84,7 +78,6 @@ if uploaded_file is not None:
             except Exception as e:
                 st.error(f"error: {e}")
 
-# CSS 样式
 st.markdown("""
     <style>
     .main > div {
