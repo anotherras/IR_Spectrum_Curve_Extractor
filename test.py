@@ -188,8 +188,8 @@ def process_image(image_path, gray_threshold=(70,255), y_axis_range=(22,108), x1
     df_y = [round(i,2) for i in y2 + y]
 
     df = pd.DataFrame({
-    'X 坐标': df_x,
-    'Y 坐标': df_y
+    'X ax': df_x,
+    'Y ax': df_y
     })
 
 
@@ -208,7 +208,7 @@ if __name__ == "__main__":
     # 隐色结晶紫   (30,93)
     # BCIM        (22,112)
 
-    for name, ax in zip(["四乙基米氏酮", "隐色结晶紫", "BCIM"], [(16,96), (30,93), (22,112)]):
+    for name, ax in zip(["四乙基3"], [(16,96)]):
         img_path = f"{name}.png"
         crop_path = f"{name}_cropped.png"
         crop_to_axes_auto(img_path,crop_path)
